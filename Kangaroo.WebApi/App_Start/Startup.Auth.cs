@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using Kangaroo.WebApi.Providers;
 using Kangaroo.WebApi.Models;
+using Kangaroo.Data;
 
 namespace Kangaroo.WebApi
 {
