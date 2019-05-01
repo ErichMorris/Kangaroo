@@ -34,6 +34,7 @@ namespace Kangaroo.Data
 
         public DbSet<Customer> Customers { get; set; }
 
+        public DbSet<MenuItem> MenuItems { get; set; }
      
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

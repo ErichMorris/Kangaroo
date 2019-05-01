@@ -54,10 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+
     <Compile Include="CustomerCreate.cs" />
     <Compile Include="CustomerDetail.cs" />
     <Compile Include="CustomerEdit.cs" />
     <Compile Include="CustomerListItem.cs" />
+    
+    <Compile Include="MenuItemCreate.cs" />
+    <Compile Include="MenuItemDetail.cs" />
+    <Compile Include="MenuItemEdit.cs" />
+    <Compile Include="MenuItemListItem.cs" />
+
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
