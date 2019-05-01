@@ -1,0 +1,6 @@
+namespace Kangaroo.WebApi.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
