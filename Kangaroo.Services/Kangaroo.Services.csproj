@@ -54,11 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kangaroo.Data\Kangaroo.Data.csproj">
+      <Project>{4ec20c76-85cf-4348-83f8-0e50ad8c118e}</Project>
+      <Name>Kangaroo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kangaroo.Models\Kangaroo.Models.csproj">
+      <Project>{de735291-686e-4af0-91e4-e861af62d8b8}</Project>
+      <Name>Kangaroo.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

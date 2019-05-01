@@ -32,6 +32,7 @@ namespace Kangaroo.Data
             return new ApplicationDbContext();
         }
 
+        public DbSet<MenuItem> MenuItems { get; set; }
      
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
