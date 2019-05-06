@@ -11,6 +11,7 @@ namespace Kangaroo.Services
     public class MenuItemService
     {
         private readonly Guid _userId;
+
         public MenuItemService(Guid userId)
         {
             _userId = userId;
@@ -26,7 +27,6 @@ namespace Kangaroo.Services
                     MenuItemDescription = model.MenuItemDescription,
                     MenuItemPrice = model.MenuItemPrice,
                     MenuItemPicture = model.MenuItemPicture,
-
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -51,9 +51,9 @@ namespace Kangaroo.Services
                                     MenuItemDescription = e.MenuItemDescription,
                                     MenuItemPrice = e.MenuItemPrice,
                                     MenuItemPicture = e.MenuItemPicture,
-
                                 }
                           );
+
                 return query.ToArray();
             }
         }
@@ -106,3 +106,4 @@ namespace Kangaroo.Services
         }
     }
 }
+

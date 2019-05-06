@@ -11,50 +11,50 @@ using System.Web.Http;
 namespace Kangaroo.WebApi.Controllers
 {
     [Authorize]
-    public class CustomerController : ApiController
+    public class OrderController : ApiController
     {
         public IHttpActionResult GetAll()
         {
-            CustomerService customerService = CreateCustomerService();
-            var customers = customerService.GetCustomers();
-            return Ok(customers);
+            OrderService orderService = CreateOrderService();
+            var orders = orderService.GetOrders();
+            return Ok(orders);
         }
         public IHttpActionResult Get(int id)
         {
-            CustomerService customerService = CreateCustomerService();
-            var customer = customerService.GetCustomerById(id);
-            return Ok(customer);
+            OrderService orderService = CreateOrderService();
+            var order = orderService.GetOrderById(id);
+            return Ok(order);
         }
-        public IHttpActionResult Post(CustomerCreate customer)
+        public IHttpActionResult Post(OrderCreate order)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var service = CreateCustomerService();
-            if (!service.CreateCustomer(customer))
+            var service = CreateOrderService();
+            if (!service.CreateOrder(order))
                 return InternalServerError();
             return Ok();
         }
-        public IHttpActionResult Put(CustomerEdit customer)
+        public IHttpActionResult Put(OrderEdit order)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var service = CreateCustomerService();
-            if (!service.UpdateCustomer(customer))
+            var service = CreateOrderService();
+            if (!service.UpdateOrder(order))
                 return InternalServerError();
             return Ok();
         }
         public IHttpActionResult Delete(int id)
         {
-            var service = CreateCustomerService();
-            if (!service.DeleteCustomer(id))
+            var service = CreateOrderService();
+            if (!service.DeleteOrder(id))
                 return InternalServerError();
             return Ok();
         }
-        private CustomerService CreateCustomerService()
+        private OrderService CreateOrderService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var customerService = new CustomerService(userId);
-            return customerService;
+            var orderService = new OrderService(userId);
+            return orderService;
         }
     }
 }
