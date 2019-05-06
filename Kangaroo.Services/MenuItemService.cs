@@ -1,32 +1,33 @@
-﻿using Kangaroo.Data;
+﻿
+using Kangaroo.Data;
 using Kangaroo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Kangaroo.Services
 {
     public class MenuItemService
     {
         private readonly Guid _userId;
+
         public MenuItemService(Guid userId)
         {
             _userId = userId;
         }
-
-        public bool CreateMenuItem(MenuItem model)
+        public bool CreateMenuItem(MenuItemCreate model)
         {
             var entity =
                 new MenuItem()
                 {
                     OwnerId = _userId,
                     MenuItemId = model.MenuItemId,
+                    RestaurantId = model.RestaurantId,
                     MenuItemName = model.MenuItemName,
-                    MenuItemPrice = model.MenuItemPrice,
                     MenuItemDescription = model.MenuItemDescription,
-                    MenuItemPicture = model.MenuItemPicture
+                    MenuItemPrice = model.MenuItemPrice,
+                    MenuItemPicture = model.MenuItemPicture,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -34,45 +35,48 @@ namespace Kangaroo.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<MenuItemListItem> GetMenuItem()
+        public IEnumerable<MenuItemListItem> GetMenuItems()
         {
             using (var ctx = new ApplicationDbContext())
-
             {
                 var query =
-                        ctx
-                            .MenuItems
-                            .Where(e => e.OwnerId == _userId)
-                            .Select(
-                                e =>
-                                    new MenuItemListItem
-                                    {
-                                        MenuItemId = e.MenuItemId,
-                                        MenuItemName = e.MenuItemName,
-                                        MenuItemPrice = e.MenuItemPrice,
-                                        MenuItemDescription = e.MenuItemDescription,
-                                        MenuItemPicture = e.MenuItemPicture
-                                    }
-                                    );
+                    ctx
+                        .MenuItems
+                        .Where(e => e.OwnerId == _userId)
+                        .Select(
+                            e =>
+                                new MenuItemListItem
+                                {
+                                    MenuItemId = e.MenuItemId,
+                                    Name = e.Restaurant.Name,
+                                    MenuItemName = e.MenuItemName,
+                                    MenuItemDescription = e.MenuItemDescription,
+                                    MenuItemPrice = e.MenuItemPrice,
+                                    MenuItemPicture = e.MenuItemPicture,
+                                }
+                          );
+
                 return query.ToArray();
             }
         }
-        public MenuItemDetail GetMenuItemById (int MenuItemId)
+        public MenuItemDetail GetMenuItemById(int menuItemId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .MenuItems
-                        .Single(e => e.MenuItemId == MenuItemId);
+                        .Single(e => e.MenuItemId == menuItemId);
                 return
                     new MenuItemDetail
                     {
                         MenuItemId = entity.MenuItemId,
+                        RestaurantId = entity.RestaurantId,
+                        Name = entity.Restaurant.Name,
                         MenuItemName = entity.MenuItemName,
-                        MenuItemPrice = entity.MenuItemPrice,
                         MenuItemDescription = entity.MenuItemDescription,
-                        MenuItemPicture = entity.MenuItemPicture
+                        MenuItemPrice = entity.MenuItemPrice,
+                        MenuItemPicture = entity.MenuItemPicture,
                     };
             }
         }
@@ -84,29 +88,27 @@ namespace Kangaroo.Services
                     ctx
                         .MenuItems
                         .Single(e => e.MenuItemId == model.MenuItemId && e.OwnerId == _userId);
-
                 entity.MenuItemId = model.MenuItemId;
+                entity.RestaurantId = model.RestaurantId;
                 entity.MenuItemName = model.MenuItemName;
-                entity.MenuItemPrice = model.MenuItemPrice;
                 entity.MenuItemDescription = model.MenuItemDescription;
+                entity.MenuItemPrice = model.MenuItemPrice;
                 entity.MenuItemPicture = model.MenuItemPicture;
-
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool DeleteMenuItem(int MenuItemId)
+        public bool DeleteMenuItem(int menuItemId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .MenuItems
-                        .Single(e => e.MenuItemId == MenuItemId && e.OwnerId == _userId);
-
-                 ctx.MenuItems.Remove(entity);
-
-                 return ctx.SaveChanges() == 1;
+                        .Single(e => e.MenuItemId == menuItemId && e.OwnerId == _userId);
+                ctx.MenuItems.Remove(entity);
+                return ctx.SaveChanges() == 1;
             }
         }
     }
 }
+
