@@ -22,6 +22,8 @@ namespace Kangaroo.Services
                 OwnerId = _userId,
                 OrderId = model.OrderId,
                 Comments = model.Comments,
+                MenuItemId=model.MenuItemId,
+                CustomerId=model.CustomerId,
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -44,6 +46,10 @@ namespace Kangaroo.Services
 
                        OrderId=e.OrderId,
                        Comments=e.Comments,
+                       MenuItemName=e.MenuItem.MenuItemName,
+                       MenuItemPrice=e.MenuItem.MenuItemPrice,
+                       CustomerName=e.Customer.CustomerName,
+                       CustomerAddress=e.Customer.CustomerAddress,
 
 
                     }
@@ -65,7 +71,12 @@ namespace Kangaroo.Services
                     OrderId = entity.OrderId,
                     OwnerId = _userId,
                     Comments = entity.Comments,
-
+                    CustomerId=entity.CustomerId,
+                    CustomerName=entity.Customer.CustomerName,
+                    CustomerAddress=entity.Customer.CustomerAddress,
+                    MenuItemId=entity.MenuItemId,
+                    MenuItemName=entity.MenuItem.MenuItemName,
+                    MenuItemPrice=entity.MenuItem.MenuItemPrice,
                 };
 
             }
@@ -79,6 +90,8 @@ namespace Kangaroo.Services
                         .Single(e => e.OrderId == model.OrderId && e.OwnerId == _userId);
                 entity.OrderId = model.OrderId;
                 entity.Comments = model.Comments;
+                entity.MenuItemId = model.MenuItemId;
+                entity.CustomerId = model.CustomerId;
                     return ctx.SaveChanges() == 1;
                 }
             }

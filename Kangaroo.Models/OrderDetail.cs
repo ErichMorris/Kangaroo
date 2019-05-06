@@ -15,5 +15,13 @@ namespace Kangaroo.Models
 
         public override string ToString()
         => $"[{OrderId}]{Comments}";
+
+        public int MenuItemId { get; set; }
+        public int CustomerId { get; set; }
+
+        public string MenuItemName { get; set; }
+        public string MenuItemPrice { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerAddress { get; set; }
     }
 }
