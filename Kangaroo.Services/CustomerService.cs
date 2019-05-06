@@ -45,7 +45,7 @@ namespace Kangaroo.Services
                             e =>
                                 new CustomerListItem
                                 {
-                                    CustomerId = e.CustomerId,
+                                    CustomerId = e.MenuItemId,
                                     CustomerName = e.CustomerName,
                                     CustomerAddress = e.CustomerAddress,
                                     CustomerPhone = e.CustomerPhone,
@@ -63,11 +63,11 @@ namespace Kangaroo.Services
                 var entity =
                     ctx
                         .Customers
-                        .Single(e => e.CustomerId == customerId);
+                        .Single(e => e.MenuItemId == customerId);
                 return
                     new CustomerDetail
                     {
-                        CustomerId = entity.CustomerId,
+                        CustomerId = entity.MenuItemId,
                         CustomerName = entity.CustomerName,
                         CustomerAddress = entity.CustomerAddress,
                         CustomerPhone = entity.CustomerPhone,
@@ -82,9 +82,9 @@ namespace Kangaroo.Services
                 var entity =
                     ctx
                         .Customers
-                        .Single(e => e.CustomerId == model.CustomerId && e.OwnerId == _userId);
+                        .Single(e => e.MenuItemId == model.CustomerId && e.OwnerId == _userId);
 
-                entity.CustomerId = model.CustomerId;
+                entity.MenuItemId = model.CustomerId;
                 entity.CustomerName = model.CustomerName;
                 entity.CustomerAddress = model.CustomerAddress;
                 entity.CustomerPhone = model.CustomerPhone;
@@ -100,7 +100,7 @@ namespace Kangaroo.Services
                 var entity =
                     ctx
                         .Customers
-                        .Single(e => e.CustomerId == customerId && e.OwnerId == _userId);
+                        .Single(e => e.MenuItemId == customerId && e.OwnerId == _userId);
 
                 ctx.Customers.Remove(entity);
 
