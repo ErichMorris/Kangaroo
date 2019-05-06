@@ -21,5 +21,9 @@ namespace Kangaroo.Data
         public string MenuItemDescription { get; set; }
 
         public string MenuItemPicture { get; set; }
+
+        public int RestaurantId { get; set; }
+
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

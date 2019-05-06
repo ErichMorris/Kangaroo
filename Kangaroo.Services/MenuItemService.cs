@@ -23,6 +23,7 @@ namespace Kangaroo.Services
                 {
                     OwnerId = _userId,
                     MenuItemId = model.MenuItemId,
+                    RestaurantId = model.RestaurantId,
                     MenuItemName = model.MenuItemName,
                     MenuItemDescription = model.MenuItemDescription,
                     MenuItemPrice = model.MenuItemPrice,
@@ -47,6 +48,7 @@ namespace Kangaroo.Services
                                 new MenuItemListItem
                                 {
                                     MenuItemId = e.MenuItemId,
+                                    Name = e.Restaurant.Name,
                                     MenuItemName = e.MenuItemName,
                                     MenuItemDescription = e.MenuItemDescription,
                                     MenuItemPrice = e.MenuItemPrice,
@@ -69,6 +71,8 @@ namespace Kangaroo.Services
                     new MenuItemDetail
                     {
                         MenuItemId = entity.MenuItemId,
+                        RestaurantId = entity.RestaurantId,
+                        Name = entity.Restaurant.Name,
                         MenuItemName = entity.MenuItemName,
                         MenuItemDescription = entity.MenuItemDescription,
                         MenuItemPrice = entity.MenuItemPrice,
@@ -85,6 +89,7 @@ namespace Kangaroo.Services
                         .MenuItems
                         .Single(e => e.MenuItemId == model.MenuItemId && e.OwnerId == _userId);
                 entity.MenuItemId = model.MenuItemId;
+                entity.RestaurantId = model.RestaurantId;
                 entity.MenuItemName = model.MenuItemName;
                 entity.MenuItemDescription = model.MenuItemDescription;
                 entity.MenuItemPrice = model.MenuItemPrice;
