@@ -17,5 +17,7 @@ namespace Kangaroo.Models
         public string MenuItemDescription { get; set; }
 
         public string MenuItemPicture { get; set; }
+
+        public string Name { get; set; }
     }
 }
