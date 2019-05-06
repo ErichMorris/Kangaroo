@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Kangaroo.Services
 {
     public class MenuItemService
@@ -23,12 +22,11 @@ namespace Kangaroo.Services
                 new MenuItem()
                 {
                     OwnerId = _userId,
-                    MenuItemId=model.MenuItemId,
-                    MenuItemName=model.MenuItemName,
-                    MenuItemDescription=model.MenuItemDescription,
-                    MenuItemPrice=model.MenuItemPrice,
-                    MenuItemPicture=model.MenuItemPicture,
-                    
+                    MenuItemId = model.MenuItemId,
+                    MenuItemName = model.MenuItemName,
+                    MenuItemDescription = model.MenuItemDescription,
+                    MenuItemPrice = model.MenuItemPrice,
+                    MenuItemPicture = model.MenuItemPicture,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -48,12 +46,11 @@ namespace Kangaroo.Services
                             e =>
                                 new MenuItemListItem
                                 {
-                                   MenuItemId=e.MenuItemId,
-                                   MenuItemName=e.MenuItemName,
-                                   MenuItemDescription=e.MenuItemDescription,
-                                   MenuItemPrice=e.MenuItemPrice,
-                                   MenuItemPicture=e.MenuItemPicture,
-                                   
+                                    MenuItemId = e.MenuItemId,
+                                    MenuItemName = e.MenuItemName,
+                                    MenuItemDescription = e.MenuItemDescription,
+                                    MenuItemPrice = e.MenuItemPrice,
+                                    MenuItemPicture = e.MenuItemPicture,
                                 }
                           );
 
@@ -71,12 +68,11 @@ namespace Kangaroo.Services
                 return
                     new MenuItemDetail
                     {
-                        MenuItemId=entity.MenuItemId,
-                        MenuItemName=entity.MenuItemName,
-                        MenuItemDescription=entity.MenuItemDescription,
-                        MenuItemPrice=entity.MenuItemPrice,
-                        MenuItemPicture=entity.MenuItemPicture,
-
+                        MenuItemId = entity.MenuItemId,
+                        MenuItemName = entity.MenuItemName,
+                        MenuItemDescription = entity.MenuItemDescription,
+                        MenuItemPrice = entity.MenuItemPrice,
+                        MenuItemPicture = entity.MenuItemPicture,
                     };
             }
         }
@@ -88,14 +84,11 @@ namespace Kangaroo.Services
                     ctx
                         .MenuItems
                         .Single(e => e.MenuItemId == model.MenuItemId && e.OwnerId == _userId);
-
                 entity.MenuItemId = model.MenuItemId;
                 entity.MenuItemName = model.MenuItemName;
                 entity.MenuItemDescription = model.MenuItemDescription;
                 entity.MenuItemPrice = model.MenuItemPrice;
                 entity.MenuItemPicture = model.MenuItemPicture;
-
-
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -107,11 +100,10 @@ namespace Kangaroo.Services
                     ctx
                         .MenuItems
                         .Single(e => e.MenuItemId == menuItemId && e.OwnerId == _userId);
-
                 ctx.MenuItems.Remove(entity);
-
                 return ctx.SaveChanges() == 1;
             }
         }
     }
 }
+
