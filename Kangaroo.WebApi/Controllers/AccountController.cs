@@ -20,6 +20,7 @@ using Kangaroo.Data;
 
 namespace Kangaroo.WebApi.Controllers
 {
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
