@@ -15,7 +15,7 @@ namespace Kangaroo.Data
         public int MenuItemId { get; set; }
 
         public string MenuItemName { get; set; }
-
+        
         public string MenuItemPrice { get; set; }
 
         public string MenuItemDescription { get; set; }
