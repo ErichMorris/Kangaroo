@@ -10,10 +10,8 @@ namespace Kangaroo.Models
     {
         public int OrderId { get; set; }
         public string Comments { get; set; }
-
         public int MenuItemId { get; set; }
         public int CustomerId { get; set; }
-
         //public string MenuItemName { get; set; }
         //public string MenuItemPrice { get; set; }
         //public string CustomerName { get; set; }
