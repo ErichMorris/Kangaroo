@@ -95,6 +95,7 @@
     <Compile Include="RestaurantDetail.cs" />
     <Compile Include="RestaurantEdit.cs" />
     <Compile Include="RestaurantListItem.cs" />
+    <Compile Include="UserInfoEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
