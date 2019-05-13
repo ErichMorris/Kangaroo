@@ -17,7 +17,8 @@ namespace Kangaroo.Services
         }
         public bool CreateOrder(OrderCreate model)
         {
-         var entity = new Order()
+            Order order = new Order
+         //var entity = new Order()
             {
                 OwnerId = _userId,
                 OrderId = model.OrderId,
@@ -28,7 +29,7 @@ namespace Kangaroo.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Orders.Add(entity);
+                ctx.Orders.Add(order);
                 return ctx.SaveChanges() == 1;
             }
         }
